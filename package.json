@@ -1,0 +1,30 @@
+{
+  "name": "blet",
+  "version": "1.0.0",
+  "description": "My first blog",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "Lim (Krip)",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "jquery": "^3.4.1",
+    "mongoose": "^5.8.1",
+    "mongoose-url-slugs": "^1.0.2",
+    "path": "^0.12.7",
+    "transliter": "^2.2.1"
+  },
+  "devDependencies": {
+    "connect-mongo": "^3.2.0",
+    "eslint": "^6.7.2",
+    "express-session": "^1.17.0",
+    "nodemon": "^2.0.2"
+  }
+}
