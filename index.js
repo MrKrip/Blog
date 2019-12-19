@@ -49,6 +49,7 @@ app.get('/',(req,res)=>{
   })
 });
 
+
 app.get('/newpost',(req,res)=>{
   const id=req.session.userID
   const login = req.session.userLogin

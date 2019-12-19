@@ -12,7 +12,6 @@ $(function () {
             contentType: 'application/json',
             url: '/api/newpost'
           }).done(function(data) {
-              console.log(data)
             if(!data.ok){
               alert(data.error)
             }else{

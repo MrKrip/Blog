@@ -21,12 +21,6 @@ const schema = new Schema(
   }
 );
 
-schema.plugin(
-  URLSlugs('title', {
-    field: 'url',
-    generator: text => tr.slugify(text)
-  })
-);
 
 schema.set('toJSON', {
   virtuals: true

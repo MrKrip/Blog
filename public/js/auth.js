@@ -13,6 +13,7 @@ $('.regist100-form-btn').on('click', function(e) {
       url: '/api/auth/register'
     }).done(function(data) {
       if(!data.ok){
+        console.log(data)
         alert(data.error)
       }else{
         $(location).attr('href','/')
@@ -27,13 +28,13 @@ $('.regist100-form-btn').on('click', function(e) {
       password: $('#Log-pass').val(),
     }
 
-    console.log(data)
     $.ajax({
       type: 'POST',
       data: JSON.stringify(data),
       contentType: 'application/json',
       url: '/api/auth/log'
     }).done(function(data) {
+      console.log(data)
       if(!data.ok){
         alert(data.error)
       }else{

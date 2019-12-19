@@ -7,6 +7,8 @@ const models = require('../../models');
 router.post('/register', (req, res)=>{
     const login=req.body.login
     const passwd =req.body.password
+    console.log(login)
+    console.log(passwd)
     if (!login || !passwd) {
         res.json({
             ok:false,
@@ -24,12 +26,14 @@ router.post('/register', (req, res)=>{
                 login,
                 password:hash
             }).then(user =>{
+                console.log(user)
                 req.session.userID=user.id
                 req.session.userLogin=user.login
                 res.json({
                     ok:true
                 })
             }).catch(err=>{
+                console.log(err)
                 res.json({
                     ok:false,
                     error:'Error'
@@ -82,8 +86,8 @@ router.post('/log', (req, res)=>{
             })
         })
     }
-    
 })
+    
 router.get('/logout', (req,res)=>{
     if(req.session)
     {
