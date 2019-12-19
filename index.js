@@ -35,6 +35,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')))
 app.use('/api/auth', routes.auth)
 app.use('/api', routes.post)
+app.use('/api', routes.chat)
 app.use('/', routes.arh)
 
 app.get('/',(req,res)=>{
