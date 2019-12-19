@@ -25,7 +25,7 @@ $('.regist100-form-btn').on('click', function(e) {
   $('.login-form-btn').on('click', function(e) {
     var data = {
       login: $('#Log-Login').val(),
-      password: $('#Log-pass').val(),
+      password: $('#Log-pass').val()
     }
 
     $.ajax({

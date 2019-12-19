@@ -26,7 +26,6 @@ router.post('/register', (req, res)=>{
                 login,
                 password:hash
             }).then(user =>{
-                console.log(user)
                 req.session.userID=user.id
                 req.session.userLogin=user.login
                 res.json({

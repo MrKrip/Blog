@@ -9,7 +9,11 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore=require('connect-mongo')(session);
 
+
+
 const app=express();
+var server = require('http').createServer(app);
+var io = require('socket.io').listen(server);
 
 app.use(
   session({
@@ -49,6 +53,17 @@ app.get('/',(req,res)=>{
   })
 });
 
+app.get('/chat',(req,res)=>{
+  const id=req.session.userID
+  const login = req.session.userLogin
+  res.render('chat',{
+    user:{
+      id,
+      login
+    }
+  })
+})
+
 
 app.get('/newpost',(req,res)=>{
   const id=req.session.userID
@@ -70,11 +85,25 @@ app.get('/registration',(req,res)=>{
     res.render('registration')
 });
 
+connections = [];
+
+io.sockets.on('connection', function(socket) {
+	console.log("Успешное соединение");
+	connections.push(socket);
+	socket.on('disconnect', function(data) {
+		connections.splice(connections.indexOf(socket), 1);
+		console.log("Отключились");
+	});
+
+
+
+});
+
 
 database()
   .then(info => {
     console.log(`Connected to ${info.host}:${info.port}/${info.name}`);
-    app.listen(config.PORT, () =>{
+    server.listen(config.PORT, () =>{
       console.log(`Example app listening on port ${config.PORT}! `)}
     );
   })
