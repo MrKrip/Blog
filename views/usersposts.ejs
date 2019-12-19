@@ -51,7 +51,7 @@
                
                  
                  <!-- About Me (Left Sidebar) Start -->
-                 <% if(!user.id && !user.login) {%>
+                 <% if(!user.id && !user.userLogin) {%>
 
                  <div class="col-md-3">
                    <div class="about-fixed">
@@ -88,7 +88,7 @@
                       <div class="my-detail">
                     	
                         <div class="white-spacing">
-                          <a href="/"><h1>Hello <%= user.login %></h1></a>
+                          <a href="/"><h1>Hello <%= user.userLogin %></h1></a>
                           <a href="/newpost"><span>Add new post</span></a><br>
                             <a href="/api/auth/logout"><span>Logout</span></a>
                         </div> 
@@ -110,7 +110,7 @@
                             
                             <div class="sub-title">
                            		<h2>Blog</h2>
-                               <% if(!user.id && !user.login) {%> <a href="/"><i class="icon-envelope"></i></a> <% } else{ %>
+                               <% if(!user.id && !user.userLogin) {%> <a href="/"><i class="icon-envelope"></i></a> <% } else{ %>
                                 <a href="/newpost"><i class="icon-envelope"></i></a><% }%>
                              </div>
                             

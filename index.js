@@ -31,11 +31,13 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')))
 app.use('/api/auth', routes.auth)
 app.use('/api', routes.post)
-//app.use('/arh', routes.arh)
+app.use('/', routes.arh)
 
 app.get('/',(req,res)=>{
-  Post.find({}).then(posts=>{
-  const id=req.session.userid
+  Post.find({})
+  .sort({ createdAt: -1 })
+  .then(posts=>{
+  const id=req.session.userID
   const login = req.session.userLogin
     res.render('index',{
       posts:posts,
@@ -48,7 +50,7 @@ app.get('/',(req,res)=>{
 });
 
 app.get('/newpost',(req,res)=>{
-  const id=req.session.userid
+  const id=req.session.userID
   const login = req.session.userLogin
     res.render('newpost',{
       user:{

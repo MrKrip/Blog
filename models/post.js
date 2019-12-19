@@ -13,9 +13,12 @@ const schema = new Schema(
     body: {
       type: String
     },
-    owner:{
-        type:Schema.Types.ObjectId,
-        ref:'User'
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    login:{
+      type: String
     },
     date: {
         type:Date,

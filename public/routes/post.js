@@ -28,7 +28,8 @@ router.post('/newpost',(req,res)=>{
         models.Post.create({
             title,
             body,
-            owner : userid
+            owner : userid,
+            login:login
 
         }).then(post=>{
             console.log(post)

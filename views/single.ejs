@@ -117,26 +117,20 @@
                             
                             <div class="col-md-12 content-page">
                             	
-                              <% for (var i = 0; i < posts.length; i++) { %>
                                 <!-- Blog Post Start -->
                                 <div class="col-md-12 blog-post">
                                     <div class="post-title">
-                                      <a href="/single/<%=posts[i].url %>"><h1><%=posts[i].title %></h1></a>
+                                      <a href="single.html"><h1><%=post.title %></h1></a>
                                     </div>  
                                     <div class="post-info">
-                                    	<span><%=posts[i].date%> / by <a href="/userposts/<%=posts[i].login %>" target="_blank"><%=posts[i].login %></a></span>
+                                    	<span><%=post.date%> / by <a href="#" target="_blank">Alex Parker</a></span>
                                     </div>  
-                                    <p><%=posts[i].body%></p>
-                                    <a href="/single/<%=posts[i].url %>" class="button button-style button-anim fa fa-long-arrow-right"><span>Read More</span></a>
+                                    <p><%=post.body%></p>
 
                                 </div>
                                 <!-- Blog Post End -->
-                                <% } %>
                                 <!-- Blog Post End -->
-                                <div class="col-md-12 text-center">
-                                  <a href="javascript:void(0)" id="load-more-post" class="load-more-button">Load</a>
-                                  <div id="post-end-message"></div>
-                                 </div>
+
                              </div>
                               
                          </div>

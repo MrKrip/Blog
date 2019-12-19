@@ -5,27 +5,62 @@ const models = require('../../models');
 const config =require('../../config')
 
 
-router.get('/:page',(req,res)=>{
-    const userId=req.session.userId
-    const userLogin=req.session.userLogin
-
-    const perPage=config.PER_PAGE
-    const page = req.params.page || 1
-
-    models.Post.find({}).skip(perPage*page - perPage)
-    .limit(perPage)
-    .then(posts=>{
-        models.Post.count().then(count=>{
-            res.render('index',{
-                current : page,
-                pages : Math.ceil(count / perPage),
-                user: {
-                    id: userId,
-                    login: userLogin
+router.get("/single/:post",(req,res)=>{
+      const url =req.params.post.trim().replace(/ +(&= )/g,'')
+      const id=req.session.userID
+      const login = req.session.userLogin
+        if(!url)
+        {
+            alert('404 error')
+        }else{
+            models.Post.findOne({
+                url
+            }).then(post=>{
+                if(!post){
+                    
+                }else{
+                   res.render('single',{
+                     post,
+                     user:{
+                         id:id,
+                         login:login
+                     }  
+                   })
                 }
             })
-        }).catch(console.log)
-    }).catch(console.log)
+        }
+})
+
+router.get('/userposts/:login',(req,res)=>{
+    const login =req.params.login
+    const id=req.session.userID
+    const userLogin = req.session.userLogin
+        models.User.findOne({
+            login
+        }).then(user=>{
+            console.log(user)
+            console.log(user)
+            console.log(user._id)
+            console.log(user.login)
+           models.Post.find({
+               owner:user.id
+           })
+           .sort({ createdAt: -1 })
+           .then(posts=>{
+               models.Post.count({
+                owner:user.id
+               }).then(count=>{
+                   res.render('usersposts',{
+                   posts,
+                   user:{
+                       id:id,
+                       userLogin:userLogin
+                   }  
+                 })   
+               })
+                          
+          })  
+        })         
 
 })
 
