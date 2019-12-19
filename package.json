@@ -19,12 +19,12 @@
     "mongoose": "^5.8.1",
     "mongoose-url-slugs": "^1.0.2",
     "path": "^0.12.7",
+    "express-session": "^1.17.0",
     "transliter": "^2.2.1"
   },
   "devDependencies": {
     "connect-mongo": "^3.2.0",
     "eslint": "^6.7.2",
-    "express-session": "^1.17.0",
     "nodemon": "^2.0.2"
   },
   "engines": {
