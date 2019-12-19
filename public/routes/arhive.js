@@ -38,10 +38,6 @@ router.get('/userposts/:login',(req,res)=>{
         models.User.findOne({
             login
         }).then(user=>{
-            console.log(user)
-            console.log(user)
-            console.log(user._id)
-            console.log(user.login)
            models.Post.find({
                owner:user.id
            })
