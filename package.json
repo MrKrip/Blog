@@ -26,5 +26,8 @@
     "eslint": "^6.7.2",
     "express-session": "^1.17.0",
     "nodemon": "^2.0.2"
+  },
+  "engines": {
+    "node" : ">=9.0.0"
   }
 }
