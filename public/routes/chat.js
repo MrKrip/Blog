@@ -15,7 +15,7 @@ router.post('/chat',(req,res)=>{
     {
         res.json({
             ok:false,
-            error :'Log in before add new post'
+            error :'Log in before chating'
         })
     }else if(!masg)
     {
