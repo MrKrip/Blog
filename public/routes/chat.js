@@ -24,7 +24,21 @@ router.post('/chat',(req,res)=>{
             error :'Fill in all the fields'
         })
     }else{
-
+        models.Chat.create({
+            login:login,
+            massage:masg
+        }).then(mas=>{
+            res.json({
+            ok:true,
+            login:mas.login,
+            msg:mas.massage
+        })
+        }).catch(err=>{
+            res.json({
+                ok:false
+            })
+        })
+        
     }
    
 })

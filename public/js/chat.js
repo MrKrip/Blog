@@ -1,9 +1,5 @@
 $(function(){
     var socket=io.connect()
-    var $form = $("#messForm"); 
-    var $textarea = $("#message"); 
-    var $all_messages = $("#all_mess");
-
 
     $('.btn-danger').on('click', function(e) {
         e.preventDefault()
@@ -20,15 +16,20 @@ $(function(){
             if(!data.ok){
               alert(data.error)
             }else{
-             
+             const name=data.login
+             var $form = $("#messForm"); 
+             var $textarea = $("#message"); 
+             socket.emit('send mess', {mess: $textarea.val(), name: name});
+            $textarea.val('');
             }
+            
           })
+
     })
 
-    $form.submit(function(event) {
-        event.preventDefault();
-        socket.emit('send mess', {mess: $textarea.val(), name: $name.val(), className: alertClass});
-        $textarea.val('');
-    });
+    var $all_messages = $("#all_mess");
+    socket.on('add mess', function (send) {
+      $all_messages.append('<div><b>'+send.name+'</b>: ' + send.mess +'</div>' )
+    })
 
   })

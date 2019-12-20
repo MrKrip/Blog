@@ -123,9 +123,10 @@
                                   <!-- Форма для получения сообщений и имени -->
                                   <form id="messForm">
                                     <div class="col-6">
-
+                                      <% for (var i = 0; i < mass.length; i++) { %>
                                       <!-- Вывод всех сообщений будет здесь -->
-                                      <div id="all_mess"></div>
+                                      <div id="all_mess"><b><%=mass[i].login %></b> : <%= mass[i].massage %></div>
+                                      <% } %>
                                     </div>
  
                                     <br>

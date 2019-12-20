@@ -4,6 +4,7 @@ const path = require('path');
 const config = require('./config');
 const database=require('./models/database');
 const Post=require('./models/post');
+const models=require('./models')
 const routes=require('./public/routes');
 const mongoose = require('mongoose');
 const session = require('express-session');
@@ -55,15 +56,19 @@ app.get('/',(req,res)=>{
 });
 
 app.get('/chat',(req,res)=>{
-  const id=req.session.userID
-  const login = req.session.userLogin
-  res.render('chat',{
-    user:{
-      id,
-      login
-    }
+  models.Chat.find({}).then(mass=>{
+        const id=req.session.userID
+      const login = req.session.userLogin
+      res.render('chat',{
+        mass,
+        user:{
+          id,
+          login
+        }
+      })
+    })
   })
-})
+ 
 
 
 app.get('/newpost',(req,res)=>{
@@ -96,7 +101,9 @@ io.sockets.on('connection', function(socket) {
 		console.log("Отключились");
 	});
 
-
+  socket.on('send mess', function (data) {
+    io.sockets.emit('add mess',{mess: data.mess,name: data.name})
+  })
 
 });
 
